@@ -3,643 +3,973 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samved Paramkusham — Portfolio</title>
+<title>Samved Paramkusham — Healthcare IT Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --blue-50: #E6F1FB;
-    --blue-100: #B5D4F4;
-    --blue-200: #85B7EB;
-    --blue-400: #378ADD;
-    --blue-600: #185FA5;
-    --blue-800: #0C447C;
-    --blue-900: #042C53;
-    --white: #ffffff;
-    --off-white: #F7F9FC;
-    --text-primary: #0D1117;
-    --text-secondary: #3D4A5C;
-    --text-muted: #6B7A8D;
-    --border: rgba(24, 95, 165, 0.15);
-    --border-strong: rgba(24, 95, 165, 0.3);
-  }
+:root {
+  /* Blues */
+  --b50:  #EFF6FF;
+  --b100: #DBEAFE;
+  --b200: #BFDBFE;
+  --b300: #93C5FD;
+  --b400: #60A5FA;
+  --b500: #3B82F6;
+  --b600: #2563EB;
+  --b700: #1D4ED8;
+  --b800: #1E40AF;
+  --b900: #1E3A8A;
 
-  html { scroll-behavior: smooth; }
+  /* Neutrals */
+  --n0:   #FFFFFF;
+  --n50:  #F8FAFD;
+  --n100: #F1F5F9;
+  --n200: #E2E8F0;
+  --n300: #CBD5E1;
+  --n400: #94A3B8;
+  --n500: #64748B;
+  --n600: #475569;
+  --n700: #334155;
+  --n800: #1E293B;
+  --n900: #0F172A;
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--text-primary);
-    line-height: 1.7;
-    font-size: 16px;
-  }
+  --accent: #0EA5E9;
+  --accent-light: #E0F2FE;
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--border);
-    padding: 0 2.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 60px;
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    color: var(--blue-800);
-    letter-spacing: 0.01em;
-  }
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--blue-600); }
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: var(--blue-900);
-    display: flex; align-items: center;
-    padding: 6rem 2.5rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: 0; right: 0;
-    width: 50%; height: 100%;
-    background: linear-gradient(135deg, transparent 0%, rgba(55,138,221,0.08) 100%);
-    pointer-events: none;
-  }
-  .hero-grid-lines {
-    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
-    background-image:
-      linear-gradient(to right, #378ADD 1px, transparent 1px),
-      linear-gradient(to bottom, #378ADD 1px, transparent 1px);
-    background-size: 80px 80px;
-  }
-  .hero-inner {
-    max-width: 1100px; margin: 0 auto; width: 100%;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-  }
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--blue-400);
-    margin-bottom: 1.25rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block; width: 28px; height: 1px;
-    background: var(--blue-400);
-  }
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 5vw, 58px);
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.08;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-  }
-  .hero-title {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--blue-200);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-  .hero-title strong {
-    color: #ffffff;
-    font-weight: 500;
-  }
-  .hero-links {
-    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--blue-400);
-    color: #ffffff;
-    font-size: 13px; font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 4px;
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: #185FA5; }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: transparent;
-    color: var(--blue-200);
-    font-size: 13px; font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 4px;
-    border: 0.5px solid rgba(133,183,235,0.4);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--blue-200); color: #fff; }
+  --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.04);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,0.10), 0 4px 8px rgba(15,23,42,0.05);
+}
 
-  /* HERO stats */
-  .hero-stats {
-    display: flex; flex-direction: column; gap: 1.5rem;
-  }
-  .stat-block {
-    padding: 1.5rem;
-    border: 0.5px solid rgba(133,183,235,0.2);
-    border-radius: 6px;
-    background: rgba(255,255,255,0.03);
-    position: relative;
-  }
-  .stat-block::before {
-    content: '';
-    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-    background: var(--blue-400);
-    border-radius: 6px 0 0 6px;
-  }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    color: #ffffff;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 13px;
-    color: var(--blue-200);
-    font-weight: 400;
-  }
+html { scroll-behavior: smooth; font-size: 16px; }
 
-  /* SECTION SCAFFOLDING */
-  section { padding: 5rem 2.5rem; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-header { margin-bottom: 3rem; }
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--blue-600);
-    margin-bottom: 0.6rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-eyebrow::before {
-    content: ''; display: block;
-    width: 24px; height: 1px; background: var(--blue-400);
-  }
-  .section-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 3vw, 34px);
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.15;
-  }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--n50);
+  color: var(--n800);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* IMPACT NUMBERS */
-  .impact-section { background: var(--off-white); }
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-  .metric-card {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 1.75rem 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .metric-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--blue-400);
-  }
-  .metric-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    font-weight: 700;
-    color: var(--blue-800);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .metric-desc {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--b100);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  transition: box-shadow 0.3s;
+}
+#navbar.scrolled { box-shadow: var(--shadow-md); }
 
-  /* EXPERIENCE */
-  .exp-section { background: var(--white); }
-  .experience-block {
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .exp-header {
-    background: var(--blue-900);
-    padding: 1.75rem 2rem;
-    display: flex; justify-content: space-between; align-items: flex-start;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .exp-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .exp-company {
-    font-size: 14px;
-    color: var(--blue-200);
-    font-weight: 400;
-  }
-  .exp-meta {
-    text-align: right;
-  }
-  .exp-duration {
-    display: inline-block;
-    background: var(--blue-400);
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 4px 14px;
-    border-radius: 3px;
-    letter-spacing: 0.03em;
-    margin-bottom: 6px;
-  }
-  .exp-location {
-    font-size: 13px;
-    color: var(--blue-200);
-    display: block;
-  }
-  .exp-achievements {
-    padding: 1.75rem 2rem;
-    list-style: none;
-    display: grid; gap: 1rem;
-  }
-  .exp-achievements li {
-    display: flex; gap: 0.9rem;
-    font-size: 14.5px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-  .exp-achievements li::before {
-    content: '';
-    flex-shrink: 0;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--blue-400);
-    margin-top: 9px;
-  }
-  .highlight {
-    color: var(--blue-800);
-    font-weight: 500;
-  }
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-brand-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--b500), var(--b700));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.nav-brand-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px; font-weight: 700; color: var(--n900);
+  letter-spacing: -0.01em;
+}
+.nav-brand-title {
+  font-size: 11px; color: var(--n400); font-weight: 400; margin-top: -2px;
+}
 
-  /* SKILLS */
-  .skills-section { background: var(--off-white); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-  .skill-card {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-  }
-  .skill-card-title {
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--blue-800);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .skill-card-title::after {
-    content: ''; flex: 1; height: 0.5px;
-    background: var(--border-strong);
-  }
-  .skill-tags {
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-  .skill-tag {
-    font-size: 12px;
-    padding: 4px 11px;
-    border-radius: 3px;
-    background: var(--blue-50);
-    color: var(--blue-800);
-    font-weight: 500;
-    border: 0.5px solid var(--blue-100);
-  }
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem; list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  font-size: 12.5px; font-weight: 500; color: var(--n600);
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-links a:hover { background: var(--b50); color: var(--b600); }
+.nav-links a.active { background: var(--b100); color: var(--b700); }
 
-  /* AWARDS */
-  .awards-section { background: var(--white); }
-  .awards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-  .award-card {
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    position: relative; overflow: hidden;
-  }
-  .award-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--blue-400), var(--blue-200));
-  }
-  .award-year {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--blue-400);
-    margin-bottom: 8px;
-  }
-  .award-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-  .award-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.55;
-  }
-  .award-icon {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--b600); color: #fff;
+  font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+  padding: 8px 18px; border-radius: var(--radius-sm);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-cta:hover { background: var(--b700); transform: translateY(-1px); }
 
-  /* EDUCATION */
-  .edu-section { background: var(--blue-900); }
-  .edu-section .section-eyebrow { color: var(--blue-400); }
-  .edu-section .section-eyebrow::before { background: var(--blue-400); }
-  .edu-section .section-heading { color: #ffffff; }
-  .edu-card {
-    display: flex; gap: 2rem; align-items: flex-start;
-    background: rgba(255,255,255,0.04);
-    border: 0.5px solid rgba(133,183,235,0.2);
-    border-radius: 8px;
-    padding: 2rem 2.25rem;
-    flex-wrap: wrap;
-  }
-  .edu-degree-icon {
-    width: 56px; height: 56px; flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--blue-800);
-    border: 0.5px solid rgba(133,183,235,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-  }
-  .edu-degree {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .edu-school {
-    font-size: 14px;
-    color: var(--blue-200);
-    margin-bottom: 4px;
-  }
-  .edu-meta {
-    font-size: 13px;
-    color: rgba(133,183,235,0.6);
-  }
+/* ═══════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--b900) 0%, #0c2461 45%, var(--b700) 100%);
+  display: flex; align-items: center;
+  padding: 8rem 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
 
-  /* CONTACT */
-  .contact-section { background: var(--off-white); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-  .contact-item {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .contact-item:hover {
-    border-color: var(--blue-400);
-    box-shadow: 0 0 0 3px rgba(55,138,221,0.08);
-  }
-  .contact-icon {
-    width: 42px; height: 42px; flex-shrink: 0;
-    background: var(--blue-50);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--blue-800);
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .contact-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text-muted);
-    margin-bottom: 2px;
-  }
-  .contact-value {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
+.hero-dots {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+  background-size: 36px 36px;
+}
+.hero-glow {
+  position: absolute; top: -20%; right: -10%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(96,165,250,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-  /* FOOTER */
-  footer {
-    background: var(--blue-900);
-    padding: 2rem 2.5rem;
-    text-align: center;
-  }
-  footer p {
-    font-size: 12px;
-    color: rgba(133,183,235,0.5);
-    letter-spacing: 0.04em;
-  }
+.hero-inner {
+  max-width: 1160px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+}
 
-  /* DIVIDER */
-  .divider {
-    width: 48px; height: 2px;
-    background: var(--blue-400);
-    margin: 1.25rem 0;
-  }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3);
+  color: var(--b300); font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--b400); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
 
-  @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; }
-    .nav-links { gap: 1.25rem; }
-    section { padding: 3.5rem 1.25rem; }
-    .hero { padding: 5rem 1.25rem 3rem; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-stats { flex-direction: row; flex-wrap: wrap; }
-    .exp-header { flex-direction: column; }
-    .exp-meta { text-align: left; }
-  }
+.hero-name {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(42px, 5.5vw, 66px);
+  font-weight: 800; color: #fff; line-height: 1.04;
+  letter-spacing: -0.03em; margin-bottom: 0.9rem;
+}
+.hero-name span { color: var(--b300); }
+
+.hero-roles {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;
+}
+.hero-role-chip {
+  font-size: 13px; font-weight: 500; color: var(--b200);
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+.hero-summary {
+  font-size: 15.5px; color: rgba(186,214,254,0.8); line-height: 1.75;
+  max-width: 540px; margin-bottom: 2.5rem;
+}
+
+.hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+.btn-hero-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--b500); color: #fff;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+  padding: 12px 26px; border-radius: var(--radius-md);
+  text-decoration: none; transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 4px 14px rgba(59,130,246,0.4);
+}
+.btn-hero-primary:hover { background: var(--b600); transform: translateY(-1px); }
+
+.btn-hero-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  font-size: 14px; font-weight: 500;
+  padding: 12px 26px; border-radius: var(--radius-md);
+  text-decoration: none; transition: background 0.15s, border-color 0.15s;
+}
+.btn-hero-outline:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+
+.btn-hero-download {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(96,165,250,0.5);
+  color: var(--b300);
+  font-size: 14px; font-weight: 500;
+  padding: 12px 26px; border-radius: var(--radius-md);
+  text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-hero-download:hover { background: rgba(96,165,250,0.1); border-color: var(--b300); color: #fff; }
+
+/* Hero quick facts */
+.hero-quick-facts {
+  display: flex; gap: 2rem;
+}
+.qf-item { display: flex; align-items: center; gap: 8px; }
+.qf-icon { font-size: 14px; opacity: 0.6; }
+.qf-text { font-size: 13px; color: rgba(186,214,254,0.75); }
+
+/* Hero right card panel */
+.hero-panel {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+}
+.panel-heading {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--b300);
+  margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;
+}
+.panel-heading::after { content:''; flex:1; height:1px; background: rgba(255,255,255,0.1); }
+
+.panel-stats { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.75rem; }
+.panel-stat {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md); padding: 1rem 1.25rem;
+  position: relative; overflow: hidden;
+}
+.panel-stat::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: var(--b400);
+}
+.ps-left { display: flex; flex-direction: column; }
+.ps-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px; font-weight: 800; color: #fff; line-height: 1;
+}
+.ps-label { font-size: 12px; color: var(--b200); margin-top: 3px; }
+.ps-icon { font-size: 22px; opacity: 0.35; }
+
+.panel-links { display: flex; flex-direction: column; gap: 0.6rem; }
+.panel-link {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm); padding: 0.7rem 1rem;
+  text-decoration: none; transition: background 0.15s, border-color 0.15s;
+  color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500;
+}
+.panel-link:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.18); color: #fff; }
+.panel-link-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--b700); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--b200); font-weight: 700; flex-shrink: 0;
+}
+.panel-link-arrow { margin-left: auto; font-size: 10px; opacity: 0.5; }
+
+/* ═══════════════════════════════════════════════════════
+   SECTION SHELL
+═══════════════════════════════════════════════════════ */
+.section { padding: 5.5rem 2.5rem; }
+.section-inner { max-width: 1160px; margin: 0 auto; }
+
+.section-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--b600);
+  background: var(--b50); border: 1px solid var(--b100);
+  padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 0.9rem;
+}
+.section-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--b500); }
+
+h2.sh {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800; color: var(--n900); line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 0.5rem;
+}
+.sh-sub {
+  font-size: 15px; color: var(--n500); max-width: 580px; line-height: 1.65;
+}
+.section-hdr { margin-bottom: 3rem; }
+.rule {
+  width: 40px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--b500), var(--b300));
+  margin-top: 1rem;
+}
+
+/* Alternating backgrounds */
+.bg-white { background: var(--n0); }
+.bg-light { background: var(--n50); }
+.bg-blue  {
+  background: linear-gradient(160deg, var(--b900) 0%, #0c2461 100%);
+}
+
+/* ═══════════════════════════════════════════════════════
+   ABOUT / SUMMARY
+═══════════════════════════════════════════════════════ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+
+.about-prose p {
+  font-size: 15px; color: var(--n600); line-height: 1.85; margin-bottom: 1.2rem;
+}
+.about-prose p:last-child { margin-bottom: 0; }
+
+.competencies-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+}
+.comp-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--b50); border: 1px solid var(--b100);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px; font-size: 12.5px; color: var(--b800); font-weight: 500;
+}
+.comp-chip-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--b500); flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   IMPACT METRICS
+═══════════════════════════════════════════════════════ */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.metric-card {
+  background: var(--n0);
+  border: 1px solid var(--n200);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.metric-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.metric-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg, var(--b500), var(--b300));
+}
+.metric-icon-wrap {
+  width: 44px; height: 44px; border-radius: var(--radius-md);
+  background: var(--b50); border: 1px solid var(--b100);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin: 0 auto 1rem;
+}
+.metric-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 38px; font-weight: 800; color: var(--b700);
+  line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em;
+}
+.metric-desc { font-size: 13px; color: var(--n500); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════════════════════════ */
+.exp-wrapper {
+  background: var(--n0); border: 1px solid var(--n200);
+  border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.exp-header-bar {
+  background: linear-gradient(135deg, var(--b900) 0%, var(--b800) 100%);
+  padding: 2rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.exp-co-logo {
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 800;
+  color: var(--b200); letter-spacing: 0.5px; flex-shrink: 0;
+}
+.exp-co-info { flex: 1; }
+.exp-co-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 4px;
+}
+.exp-co-role { font-size: 14px; color: var(--b200); font-weight: 400; }
+.exp-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.exp-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+  padding: 6px 14px; border-radius: 100px;
+}
+.exp-badge.tenure { background: var(--b500); color: #fff; }
+.exp-badge.status {
+  background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80;
+}
+.exp-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
+
+/* Category tabs nav */
+.exp-tabs {
+  display: flex; border-bottom: 1px solid var(--n200); overflow-x: auto;
+  scrollbar-width: none;
+}
+.exp-tabs::-webkit-scrollbar { display: none; }
+.exp-tab {
+  padding: 0.9rem 1.5rem; font-size: 13px; font-weight: 500; color: var(--n500);
+  border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s; background: none; border-top: none;
+  border-left: none; border-right: none; font-family: 'Inter', sans-serif;
+}
+.exp-tab.active { color: var(--b600); border-bottom-color: var(--b600); }
+.exp-tab:hover:not(.active) { color: var(--n700); }
+
+/* Tab content panels */
+.exp-tab-panels { padding: 2rem 2.5rem; }
+.exp-panel { display: none; }
+.exp-panel.active { display: block; }
+.exp-panel-desc {
+  font-size: 13.5px; color: var(--n500); margin-bottom: 1.25rem; font-style: italic;
+}
+.exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.exp-item {
+  display: flex; gap: 1rem; padding: 1rem 1.25rem;
+  background: var(--n50); border: 1px solid var(--n100);
+  border-radius: var(--radius-md);
+  font-size: 14px; color: var(--n600); line-height: 1.7;
+  transition: border-color 0.15s, background 0.15s;
+}
+.exp-item:hover { background: var(--b50); border-color: var(--b100); }
+.exp-bullet {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--b100); border: 1.5px solid var(--b200);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.exp-bullet-inner { width: 7px; height: 7px; border-radius: 50%; background: var(--b500); }
+.hl { color: var(--b700); font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════
+   TECHNICAL SKILLS  (verbatim from resume — no changes)
+═══════════════════════════════════════════════════════ */
+.skills-grid { display: flex; flex-direction: column; gap: 1rem; }
+.skill-row {
+  background: var(--n0); border: 1px solid var(--n200);
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: grid; grid-template-columns: 220px 1fr;
+}
+.skill-cat {
+  background: var(--b50); border-right: 1px solid var(--b100);
+  padding: 1.1rem 1.25rem;
+  font-size: 12.5px; font-weight: 600; color: var(--b700);
+  display: flex; align-items: center; gap: 8px;
+}
+.skill-cat-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--b100); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.skill-items {
+  padding: 1.1rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+}
+.skill-tag {
+  font-size: 12.5px; font-weight: 500; color: var(--n700);
+  background: var(--n50); border: 1px solid var(--n200);
+  padding: 4px 12px; border-radius: 100px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════════════════════ */
+.awards-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+}
+.award-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  transition: background 0.2s, border-color 0.2s;
+}
+.award-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); }
+.award-medal {
+  width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.award-medal.coral { background: rgba(251,146,60,0.15); border: 1px solid rgba(251,146,60,0.25); }
+.award-medal.amber { background: rgba(250,204,21,0.15); border: 1px solid rgba(250,204,21,0.25); }
+.award-yr {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--b300); margin-bottom: 5px;
+}
+.award-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.award-desc { font-size: 13px; color: rgba(186,214,254,0.7); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════
+   EDUCATION
+═══════════════════════════════════════════════════════ */
+.edu-card {
+  background: var(--n0); border: 1px solid var(--n200);
+  border-radius: var(--radius-xl); padding: 2.5rem;
+  display: flex; gap: 2rem; align-items: flex-start;
+  box-shadow: var(--shadow-md); flex-wrap: wrap;
+}
+.edu-emblem {
+  width: 72px; height: 72px; flex-shrink: 0; border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--b600), var(--b400));
+  display: flex; align-items: center; justify-content: center; font-size: 28px;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+}
+.edu-degree {
+  font-family: 'Sora', sans-serif;
+  font-size: 21px; font-weight: 800; color: var(--n900); margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.edu-institution { font-size: 15px; color: var(--b600); font-weight: 500; margin-bottom: 6px; }
+.edu-meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.edu-meta-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--n500);
+  background: var(--n100); border-radius: 100px; padding: 4px 12px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESUME DOWNLOAD SECTION
+═══════════════════════════════════════════════════════ */
+.download-section {
+  background: linear-gradient(135deg, var(--b600) 0%, var(--b800) 100%);
+}
+.download-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 2rem;
+}
+.download-text {}
+.download-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--b200); margin-bottom: 8px;
+}
+.download-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px; font-weight: 800; color: #fff;
+  letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.download-sub { font-size: 14.5px; color: var(--b200); line-height: 1.6; }
+.download-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-dl-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #fff; color: var(--b700);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-dl-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+.btn-dl-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--b100); display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+.btn-dl-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; font-size: 14px; font-weight: 500;
+  padding: 14px 24px; border-radius: var(--radius-md);
+  text-decoration: none; transition: background 0.15s;
+}
+.btn-dl-outline:hover { background: rgba(255,255,255,0.18); }
+.dl-format-note {
+  font-size: 12px; color: rgba(186,214,254,0.6);
+  margin-top: 6px; text-align: left;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════ */
+.contact-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+}
+.contact-card {
+  background: var(--n0); border: 1px solid var(--n200);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  text-decoration: none; box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.contact-card:hover {
+  border-color: var(--b300); transform: translateY(-2px); box-shadow: var(--shadow-md);
+}
+.contact-icon-wrap {
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: var(--radius-md);
+  background: var(--b50); border: 1px solid var(--b100);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.contact-lbl {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--n400); margin-bottom: 3px; font-weight: 500;
+}
+.contact-val { font-size: 13.5px; font-weight: 600; color: var(--n800); }
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
+footer {
+  background: var(--n900);
+  padding: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-left {}
+.footer-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 3px;
+}
+.footer-sub { font-size: 12.5px; color: var(--n500); }
+.footer-links { display: flex; gap: 0.5rem; }
+.footer-link {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 13px; color: var(--n400); text-decoration: none;
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.footer-link:hover { color: var(--b300); background: rgba(255,255,255,0.05); }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-panel { max-width: 480px; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  #navbar { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .section { padding: 4rem 1.5rem; }
+  #hero { padding: 7rem 1.5rem 4rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .skill-row { grid-template-columns: 1fr; }
+  .skill-cat { border-right: none; border-bottom: 1px solid var(--b100); }
+  .awards-grid { grid-template-columns: 1fr; }
+  .download-inner { flex-direction: column; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+  .competencies-grid { grid-template-columns: 1fr; }
+  .hero-quick-facts { flex-direction: column; gap: 0.6rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">S. Paramkusham</div>
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-brand-avatar">SP</div>
+    <div>
+      <div class="nav-brand-name">Samved Paramkusham</div>
+      <div class="nav-brand-title">Healthcare IT Professional</div>
+    </div>
+  </a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#impact">Impact</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#awards">Awards</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="Samved_Paramkusham_Resume.docx" download class="nav-cta">⬇ Resume</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-grid-lines"></div>
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">Healthcare IT Professional</div>
-      <h1 class="hero-name">Samved<br>Paramkusham</h1>
-      <p class="hero-title">
-        <strong>Facets Specialist · SQL / PL-SQL Developer · Healthcare IT Lead</strong><br>
-        6+ years architecting high-performance payer systems and leading cross-functional teams at Cognizant Technology Solutions.
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Available for opportunities · Hyderabad, India</div>
+      <h1 class="hero-name">Samved<br><span>Paramkusham</span></h1>
+      <div class="hero-roles">
+        <span class="hero-role-chip">Facets Specialist</span>
+        <span class="hero-role-chip">SQL / PL-SQL Developer</span>
+        <span class="hero-role-chip">Healthcare IT Lead</span>
+      </div>
+      <p class="hero-summary">
+        Results-driven Healthcare IT Professional with <strong style="color:#fff;">6+ years of expertise</strong> in TriZetto Facets Core Administration, SQL/PL-SQL development, and healthcare data integration — delivering zero-defect deployments and measurable outcomes for US payer clients with 500K+ members.
       </p>
-      <div class="hero-links">
-        <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="btn-primary">LinkedIn Profile</a>
-        <a href="https://github.com/Samved-git" target="_blank" class="btn-outline">GitHub</a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-hero-primary">View Experience →</a>
+        <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="btn-hero-outline">LinkedIn Profile</a>
+        <a href="Samved_Paramkusham_Resume.docx" download class="btn-hero-download">⬇ Download Resume</a>
+      </div>
+      <div class="hero-quick-facts">
+        <div class="qf-item"><span class="qf-icon">📧</span><span class="qf-text">samvedparamkusham@gmail.com</span></div>
+        <div class="qf-item"><span class="qf-icon">📱</span><span class="qf-text">+91 9989301928</span></div>
+        <div class="qf-item"><span class="qf-icon">📍</span><span class="qf-text">Hyderabad, Telangana</span></div>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat-block">
-        <div class="stat-num">6+</div>
-        <div class="stat-label">Years in Healthcare IT, Cognizant</div>
+    <div class="hero-panel">
+      <div class="panel-heading">Career highlights</div>
+      <div class="panel-stats">
+        <div class="panel-stat">
+          <div class="ps-left"><div class="ps-num">6+</div><div class="ps-label">Years at Cognizant</div></div>
+          <div class="ps-icon">🏢</div>
+        </div>
+        <div class="panel-stat">
+          <div class="ps-left"><div class="ps-num">500K+</div><div class="ps-label">Members supported</div></div>
+          <div class="ps-icon">🏥</div>
+        </div>
+        <div class="panel-stat">
+          <div class="ps-left"><div class="ps-num">4×</div><div class="ps-label">Excellence awards</div></div>
+          <div class="ps-icon">🏆</div>
+        </div>
       </div>
-      <div class="stat-block">
-        <div class="stat-num">500K+</div>
-        <div class="stat-label">Health plan members supported</div>
-      </div>
-      <div class="stat-block">
-        <div class="stat-num">4×</div>
-        <div class="stat-label">Employee excellence awards</div>
+      <div class="panel-heading">Profiles</div>
+      <div class="panel-links">
+        <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="panel-link">
+          <div class="panel-link-icon">in</div>
+          linkedin.com/in/samved-paramkusham
+          <span class="panel-link-arrow">↗</span>
+        </a>
+        <a href="https://github.com/Samved-git" target="_blank" class="panel-link">
+          <div class="panel-link-icon">&lt;/&gt;</div>
+          github.com/Samved-git
+          <span class="panel-link-arrow">↗</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IMPACT METRICS -->
-<section class="impact-section" id="impact">
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="section bg-white">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Measurable impact</div>
-      <h2 class="section-heading">Results that define a career</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Professional summary</div>
+      <h2 class="sh">About Me</h2>
+      <p class="sh-sub">A results-driven specialist with a record of zero-defect delivery and quantifiable business impact across six years.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-prose">
+        <p>I am a Healthcare IT Professional with 6+ years of hands-on expertise in TriZetto Facets Core Administration, SQL/PL-SQL development, and healthcare data integration at Cognizant Technology Solutions. I have led end-to-end delivery of complex payer system implementations for US clients supporting 500K+ members, ensuring 100% HIPAA and CMS regulatory compliance throughout.</p>
+        <p>My approach combines deep technical proficiency — query optimization, ETL automation, and cloud-based workflow engineering — with strong leadership capability, having managed cross-functional teams of 5–8 members across 5+ healthcare integration projects. I am recognized for a consistent track record of zero-defect deployments, measurable cost savings, and proactive problem solving.</p>
+        <p>Currently seeking a Facets Developer, SQL/PL-SQL Developer, or Lead role in Hyderabad to apply deep domain expertise and leadership capabilities in a high-impact environment.</p>
+      </div>
+      <div>
+        <div class="section-tag" style="margin-bottom:1.1rem;"><div class="section-tag-dot"></div>Core competencies</div>
+        <div class="competencies-grid">
+          <div class="comp-chip"><div class="comp-chip-dot"></div>TriZetto Facets Administration</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Healthcare Analytics</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>SQL Server &amp; PL/SQL Dev</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>HIPAA / CMS Compliance</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Claims &amp; Enrolment Mgmt</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Agile / Scrum Leadership</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>EDI Standards (837/834/835)</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Team Management (5–8)</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>SSIS / ETL Development</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Azure DevOps</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>DB Performance Tuning</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>AWS Cloud Automation</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Provider Network Mgmt</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Business Continuity &amp; DR</div>
+          <div class="comp-chip"><div class="comp-chip-dot"></div>Data Migration &amp; Archival</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ IMPACT ═══════════ -->
+<section id="impact" class="section bg-light">
+  <div class="section-inner">
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Measurable impact</div>
+      <h2 class="sh">Results at a Glance</h2>
+      <p class="sh-sub">Key quantified outcomes delivered across 6+ years at Cognizant — every number is from production.</p>
+      <div class="rule"></div>
     </div>
     <div class="metrics-grid">
       <div class="metric-card">
-        <div class="metric-number">8×</div>
-        <div class="metric-desc">SQL execution time improvement on 100K+ daily transaction codebase</div>
+        <div class="metric-icon-wrap">⚡</div>
+        <div class="metric-num">8×</div>
+        <div class="metric-desc">SQL execution speed improvement on a 100,000+ daily transaction codebase via tuning &amp; indexing</div>
       </div>
       <div class="metric-card">
-        <div class="metric-number">85%</div>
-        <div class="metric-desc">Reduction in manual effort for 50,000+ member subscriber migration</div>
+        <div class="metric-icon-wrap">🔄</div>
+        <div class="metric-num">85%</div>
+        <div class="metric-desc">Reduction in manual effort for 50,000+ member subscriber migration with 99.8% data accuracy</div>
       </div>
       <div class="metric-card">
-        <div class="metric-number">45%</div>
-        <div class="metric-desc">Query performance gain via enterprise data archival solution</div>
+        <div class="metric-icon-wrap">📦</div>
+        <div class="metric-num">45%</div>
+        <div class="metric-desc">Query performance gain through enterprise data archival solution, reducing storage costs significantly</div>
       </div>
       <div class="metric-card">
-        <div class="metric-number">$10K</div>
-        <div class="metric-desc">Annual cost savings from SSIS-automated EDI transaction processing</div>
+        <div class="metric-icon-wrap">💰</div>
+        <div class="metric-num">$10K</div>
+        <div class="metric-desc">Annual cost savings from automated SSIS EDI transaction processing, eliminating 40+ manual hours monthly</div>
       </div>
       <div class="metric-card">
-        <div class="metric-number">5 min</div>
-        <div class="metric-desc">Turnaround time on workflows that previously required a full week via vendor</div>
+        <div class="metric-icon-wrap">🚀</div>
+        <div class="metric-num">&lt;5 min</div>
+        <div class="metric-desc">Turnaround time for workflows that previously took 1 week via a third-party vendor — replaced with AWS automation</div>
       </div>
       <div class="metric-card">
-        <div class="metric-number">60%</div>
-        <div class="metric-desc">Year-over-year enrolment growth after SQL-driven root-cause resolution</div>
+        <div class="metric-icon-wrap">📈</div>
+        <div class="metric-num">60%</div>
+        <div class="metric-desc">Year-over-year enrolment growth achieved after resolving a 40% decline through SQL-driven analytics</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="exp-section" id="experience">
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section id="experience" class="section bg-white">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Professional experience</div>
-      <h2 class="section-heading">Where the work was done</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Professional experience</div>
+      <h2 class="sh">Career History</h2>
+      <p class="sh-sub">6+ years of focused delivery across SQL development, data integration, cloud automation, and team leadership.</p>
+      <div class="rule"></div>
     </div>
-    <div class="experience-block">
-      <div class="exp-header">
-        <div>
-          <div class="exp-role">Product Specialist — Healthcare Payer Systems</div>
-          <div class="exp-company">Cognizant Technology Solutions</div>
+
+    <div class="exp-wrapper">
+      <!-- Company header -->
+      <div class="exp-header-bar">
+        <div class="exp-co-logo">CTS</div>
+        <div class="exp-co-info">
+          <div class="exp-co-name">Cognizant Technology Solutions</div>
+          <div class="exp-co-role">Product Specialist — Healthcare Payer Systems &nbsp;·&nbsp; Hyderabad, Telangana, India</div>
         </div>
-        <div class="exp-meta">
-          <span class="exp-duration">March 2020 – Present</span>
-          <span class="exp-location">Hyderabad, Telangana, India</span>
+        <div class="exp-badges">
+          <span class="exp-badge tenure">March 2020 – Present</span>
+          <span class="exp-badge status"><div class="exp-badge-dot"></div>Currently employed</span>
         </div>
       </div>
-      <ul class="exp-achievements">
-        <li>Developed and maintained SQL/PL-SQL solutions for <span class="highlight">TriZetto Facets and Cactus</span> supporting claims adjudication, enrolment processing, benefit management, and provider network administration for US healthcare clients with <span class="highlight">500K+ members</span>; ensured 100% HIPAA and CMS regulatory compliance.</li>
-        <li>Engineered automated SSIS packages for EDI transactions (837, 834 files), eliminating <span class="highlight">40+ hours of manual processing monthly</span> and generating $10,000 in annual cost savings with full SLA compliance.</li>
-        <li>Resolved a 40% enrolment decline by leveraging SQL analytics to identify provider data field issues and implementing exclusion logic — resulting in <span class="highlight">60% year-over-year enrolment growth</span>.</li>
-        <li>Automated subscriber migration for <span class="highlight">50,000+ members</span> from legacy to new health plans, reducing manual effort by 85% and improving data accuracy to 99.8%.</li>
-        <li>Built an enterprise data archival solution to migrate inactive records, improving query performance by <span class="highlight">45%</span> and significantly reducing storage costs.</li>
-        <li>Optimized legacy Facets codebase handling <span class="highlight">100,000+ daily transactions</span> through SQL tuning, indexing, and query refactoring — achieving 8× execution time improvement with zero defects across consecutive releases.</li>
-        <li>Led 5+ healthcare data integration projects managing cross-functional teams of 5–8 members, delivering on-time within budget while maintaining <span class="highlight">92% team utilisation</span>.</li>
-        <li>Served as BCM Primary Coordinator for disaster recovery, ensuring <span class="highlight">99.9% system availability</span> for critical healthcare systems.</li>
-        <li>Designed and deployed an <span class="highlight">AWS-based automation model</span> to replicate file generation workflows previously outsourced — reducing turnaround from 1 week to under 5 minutes and eliminating vendor dependency entirely.</li>
-        <li>Led cross-functional team to a <span class="highlight">zero-defect production go-live in September 2025</span>, delivering measurable performance optimisation and maintaining post-implementation operational excellence.</li>
-      </ul>
+
+      <!-- Category tabs -->
+      <div class="exp-tabs" id="expTabs">
+        <button class="exp-tab active" data-tab="sql">SQL &amp; Platform Dev</button>
+        <button class="exp-tab" data-tab="integration">Data Integration &amp; ETL</button>
+        <button class="exp-tab" data-tab="cloud">Cloud &amp; Automation</button>
+        <button class="exp-tab" data-tab="analytics">Analytics &amp; Enrolment</button>
+        <button class="exp-tab" data-tab="leadership">Project Leadership</button>
+        <button class="exp-tab" data-tab="continuity">Business Continuity</button>
+      </div>
+
+      <!-- Panels -->
+      <div class="exp-tab-panels">
+
+        <div class="exp-panel active" id="tab-sql">
+          <p class="exp-panel-desc">Core SQL/PL-SQL and TriZetto Facets development work across claims, enrolment, and provider domains.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Developed and maintained <span class="hl">SQL/PL-SQL solutions</span> for TriZetto Facets and Cactus platforms supporting claims adjudication, enrolment processing, benefit management, and provider network administration for US healthcare clients with <span class="hl">500K+ members</span>; ensured 100% HIPAA and CMS regulatory compliance.</div>
+            </li>
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Optimized legacy Facets codebase handling <span class="hl">100,000+ daily transactions</span> through SQL tuning, indexing, and query refactoring — achieving <span class="hl">8× execution time improvement</span> with zero defects across consecutive releases.</div>
+            </li>
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Built an enterprise data archival solution to migrate inactive records to archive databases, improving <span class="hl">query performance by 45%</span> and significantly reducing storage costs.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="tab-integration">
+          <p class="exp-panel-desc">SSIS automation, EDI transaction processing, and large-scale member data migration.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Engineered automated <span class="hl">SSIS packages for EDI transactions</span> (837, 834 files), eliminating <span class="hl">40+ hours of manual processing monthly</span> and generating $10,000 in annual cost savings with full SLA compliance.</div>
+            </li>
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Automated subscriber migration for <span class="hl">50,000+ members</span> from legacy to new health plans during renewals, reducing manual effort by <span class="hl">85%</span> and improving data accuracy to <span class="hl">99.8%</span>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="tab-cloud">
+          <p class="exp-panel-desc">AWS-based workflow automation that eliminated an entire third-party vendor dependency.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Designed and deployed an <span class="hl">AWS-based automation model</span> to replicate file generation workflows previously outsourced to a third-party vendor — reducing turnaround time from <span class="hl">1 week to under 5 minutes</span>, eliminating vendor dependency, and delivering significant cost and operational efficiency gains.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="tab-analytics">
+          <p class="exp-panel-desc">SQL-driven analytics to diagnose and resolve a critical enrolment crisis, delivering sustained growth.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Resolved a <span class="hl">40% enrolment decline</span> by leveraging SQL analytics to identify provider data field issues and implementing exclusion logic — resulting in <span class="hl">60% year-over-year enrolment growth</span>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="tab-leadership">
+          <p class="exp-panel-desc">Agile project leadership, stakeholder reporting, and zero-defect production delivery.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Led <span class="hl">5+ healthcare data integration projects</span> managing cross-functional teams of 5–8 members, coordinating offshore-onsite collaboration, and delivering on-time within budget while maintaining <span class="hl">92% team utilisation</span>.</div>
+            </li>
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Facilitated Agile ceremonies; maintained project visibility through <span class="hl">Azure DevOps</span> by managing backlogs, tracking sprint velocity, and delivering executive-level reporting to stakeholders.</div>
+            </li>
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Led cross-functional team to a <span class="hl">zero-defect production go-live in September 2025</span>, delivering measurable performance optimisation and maintaining post-implementation operational excellence.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="tab-continuity">
+          <p class="exp-panel-desc">BCM coordination ensuring critical healthcare system availability across the organisation.</p>
+          <ul class="exp-list">
+            <li class="exp-item">
+              <div class="exp-bullet"><div class="exp-bullet-inner"></div></div>
+              <div>Served as <span class="hl">BCM Primary Coordinator</span> for disaster recovery planning and business continuity, ensuring <span class="hl">99.9% system availability</span> for critical healthcare systems.</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="skills-section" id="skills">
+<!-- ═══════════ SKILLS ═══════════ -->
+<section id="skills" class="section bg-light">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Technical expertise</div>
-      <h2 class="section-heading">Skills &amp; technologies</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Technical expertise</div>
+      <h2 class="sh">Skills &amp; Technologies</h2>
+      <p class="sh-sub">Every skill listed here is taken verbatim from my resume — no additions, no omissions.</p>
+      <div class="rule"></div>
     </div>
     <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-card-title">Programming</div>
-        <div class="skill-tags">
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">💻</div>Programming Languages</div>
+        <div class="skill-items">
           <span class="skill-tag">SQL</span>
           <span class="skill-tag">PL/SQL</span>
           <span class="skill-tag">T-SQL</span>
@@ -647,165 +977,242 @@
           <span class="skill-tag">C++</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">Databases</div>
-        <div class="skill-tags">
-          <span class="skill-tag">MS SQL Server</span>
-          <span class="skill-tag">Oracle DB</span>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">🗄️</div>Database Technologies</div>
+        <div class="skill-items">
+          <span class="skill-tag">Microsoft SQL Server</span>
+          <span class="skill-tag">Oracle Database</span>
           <span class="skill-tag">Query Optimisation</span>
           <span class="skill-tag">Index Design</span>
           <span class="skill-tag">Data Modelling</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">Healthcare Platforms</div>
-        <div class="skill-tags">
-          <span class="skill-tag">TriZetto Facets</span>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">🏥</div>Healthcare Platforms</div>
+        <div class="skill-items">
+          <span class="skill-tag">TriZetto Facets Core Administration</span>
           <span class="skill-tag">Cactus</span>
-          <span class="skill-tag">EDI X12</span>
-          <span class="skill-tag">837 / 834 / 835</span>
+          <span class="skill-tag">EDI Standards (X12 837, 834, 835, 270/271)</span>
           <span class="skill-tag">Claims Processing</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">ETL &amp; Integration</div>
-        <div class="skill-tags">
-          <span class="skill-tag">SSIS</span>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">🔄</div>ETL &amp; Integration</div>
+        <div class="skill-items">
+          <span class="skill-tag">SQL Server Integration Services (SSIS)</span>
           <span class="skill-tag">Data Migration</span>
           <span class="skill-tag">ETL Development</span>
           <span class="skill-tag">File Processing Automation</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">Cloud &amp; DevOps</div>
-        <div class="skill-tags">
-          <span class="skill-tag">AWS Automation</span>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">☁️</div>Cloud &amp; Automation</div>
+        <div class="skill-items">
+          <span class="skill-tag">AWS (File Generation Automation)</span>
+          <span class="skill-tag">AWS (Workflow Automation)</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">🛠️</div>Development Tools</div>
+        <div class="skill-items">
           <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">SQL Server Management Studio</span>
+          <span class="skill-tag">Microsoft Visual Studio</span>
           <span class="skill-tag">Git</span>
           <span class="skill-tag">TFS</span>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">Methodologies</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Agile / Scrum</span>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">📐</div>Modelling &amp; Documentation</div>
+        <div class="skill-items">
+          <span class="skill-tag">Microsoft Visio</span>
+          <span class="skill-tag">MS Office Suite</span>
+          <span class="skill-tag">SharePoint</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat"><div class="skill-cat-icon">📋</div>Methodologies</div>
+        <div class="skill-items">
+          <span class="skill-tag">Agile/Scrum</span>
           <span class="skill-tag">Waterfall</span>
-          <span class="skill-tag">HIPAA Compliance</span>
-          <span class="skill-tag">Business Continuity</span>
+          <span class="skill-tag">Business Requirements Analysis</span>
+          <span class="skill-tag">Process Improvement</span>
+          <span class="skill-tag">Change Management</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AWARDS -->
-<section class="awards-section" id="awards">
+<!-- ═══════════ AWARDS ═══════════ -->
+<section id="awards" class="section bg-blue">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Recognition</div>
-      <h2 class="section-heading">Awards &amp; honours</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:var(--b300);">
+        <div class="section-tag-dot" style="background:var(--b300);"></div>Recognition
+      </div>
+      <h2 class="sh" style="color:#fff;">Awards &amp; Honours</h2>
+      <p class="sh-sub" style="color:var(--b200);">Four consecutive Cognizant awards across four years — a record of sustained, recognised excellence.</p>
+      <div class="rule"></div>
     </div>
     <div class="awards-grid">
       <div class="award-card">
-        <div class="award-icon">🏆</div>
-        <div class="award-year">2021</div>
-        <div class="award-name">Coral Award — Best Employee Q1</div>
-        <div class="award-desc">Recognized for exemplary project delivery and successful implementation of critical healthcare system enhancements with zero production issues.</div>
+        <div class="award-medal coral">🏆</div>
+        <div>
+          <div class="award-yr">2021 · Q1</div>
+          <div class="award-name">Coral Award — Best Employee Q1</div>
+          <div class="award-desc">Recognized for exemplary project delivery and successful implementation of critical healthcare system enhancements with zero production issues.</div>
+        </div>
       </div>
       <div class="award-card">
-        <div class="award-icon">🏆</div>
-        <div class="award-year">2022</div>
-        <div class="award-name">Amber Award — Outstanding Contribution</div>
-        <div class="award-desc">Honoured for initiatives beyond project scope, including timesheet consolidation automation and Azure DevOps documentation standardization.</div>
+        <div class="award-medal amber">🥇</div>
+        <div>
+          <div class="award-yr">2022 · Annual</div>
+          <div class="award-name">Amber Award — Outstanding Contribution</div>
+          <div class="award-desc">Honoured for initiatives beyond project scope, including timesheet consolidation automation and Azure DevOps documentation standardisation.</div>
+        </div>
       </div>
       <div class="award-card">
-        <div class="award-icon">🏆</div>
-        <div class="award-year">2023</div>
-        <div class="award-name">Coral Award — Best Employee H1</div>
-        <div class="award-desc">Awarded for achieving zero-defect production deployments across all existing healthcare codebase releases, demonstrating exceptional QA rigor.</div>
+        <div class="award-medal coral">🏆</div>
+        <div>
+          <div class="award-yr">2023 · H1</div>
+          <div class="award-name">Coral Award — Best Employee H1</div>
+          <div class="award-desc">Awarded for achieving zero-defect production deployments across all existing healthcare codebase releases, demonstrating exceptional QA rigour.</div>
+        </div>
       </div>
       <div class="award-card">
-        <div class="award-icon">🏆</div>
-        <div class="award-year">2024</div>
-        <div class="award-name">Coral Award — Best Employee H1</div>
-        <div class="award-desc">Recognized for exceptional project leadership, technical mentorship, and driving team success in delivering complex healthcare integration solutions ahead of schedule.</div>
+        <div class="award-medal coral">🏆</div>
+        <div>
+          <div class="award-yr">2024 · H1</div>
+          <div class="award-name">Coral Award — Best Employee H1</div>
+          <div class="award-desc">Recognised for exceptional project leadership, technical mentorship, and driving team success in delivering complex healthcare integration solutions ahead of schedule.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section class="edu-section" id="education">
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section id="education" class="section bg-white">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Education</div>
-      <h2 class="section-heading">Academic foundation</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Education</div>
+      <h2 class="sh">Academic Background</h2>
+      <div class="rule"></div>
     </div>
     <div class="edu-card">
-      <div class="edu-degree-icon">🎓</div>
+      <div class="edu-emblem">🎓</div>
       <div>
         <div class="edu-degree">Bachelor of Technology — Mechanical Engineering</div>
-        <div class="edu-school">Kakatiya Institute of Technology and Science, Warangal</div>
-        <div class="edu-meta">2015 – 2019 &nbsp;·&nbsp; CGPA: 7.39 / 10.0</div>
+        <div class="edu-institution">Kakatiya Institute of Technology and Science, Warangal</div>
+        <div class="edu-meta-row">
+          <span class="edu-meta-chip">📅 2015 – 2019</span>
+          <span class="edu-meta-chip">⭐ CGPA: 7.39 / 10.0</span>
+          <span class="edu-meta-chip">📍 Warangal, Telangana</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
+<!-- ═══════════ RESUME DOWNLOAD ═══════════ -->
+<section id="download" class="section download-section">
+  <div class="download-inner">
+    <div class="download-text">
+      <div class="download-eyebrow">Ready to connect</div>
+      <div class="download-title">Download My Resume</div>
+      <div class="download-sub">Get the full picture — all experience, skills, and accomplishments in a single clean document. Available as a Word file for your ATS or recruiter workflow.</div>
+    </div>
+    <div>
+      <div class="download-actions">
+        <a href="Samved_Paramkusham_Resume.docx" download class="btn-dl-primary">
+          <div class="btn-dl-icon">⬇</div>
+          Download Resume (.docx)
+        </a>
+        <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="btn-dl-outline">View LinkedIn →</a>
+      </div>
+      <div class="dl-format-note">Word document · Optimized for ATS · Updated 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="section bg-light">
   <div class="section-inner">
-    <div class="section-header">
-      <div class="section-eyebrow">Get in touch</div>
-      <h2 class="section-heading">Open to opportunities in Hyderabad</h2>
-      <div class="divider"></div>
+    <div class="section-hdr">
+      <div class="section-tag"><div class="section-tag-dot"></div>Get in touch</div>
+      <h2 class="sh">Contact</h2>
+      <p class="sh-sub">Open to Facets Specialist, SQL/PL-SQL Developer, and Lead roles in Hyderabad. Available for immediate consideration.</p>
+      <div class="rule"></div>
     </div>
     <div class="contact-grid">
-      <a href="mailto:samvedparamkusham@gmail.com" class="contact-item">
-        <div class="contact-icon">✉</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">samvedparamkusham@gmail.com</div>
-        </div>
+      <a href="mailto:samvedparamkusham@gmail.com" class="contact-card">
+        <div class="contact-icon-wrap">✉️</div>
+        <div><div class="contact-lbl">Email</div><div class="contact-val">samvedparamkusham@gmail.com</div></div>
       </a>
-      <a href="tel:+919989301928" class="contact-item">
-        <div class="contact-icon">☎</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+91 99893 01928</div>
-        </div>
+      <a href="tel:+919989301928" class="contact-card">
+        <div class="contact-icon-wrap">📱</div>
+        <div><div class="contact-lbl">Phone</div><div class="contact-val">+91 9989301928</div></div>
       </a>
-      <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="contact-item">
-        <div class="contact-icon">in</div>
-        <div>
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value">samved-paramkusham</div>
-        </div>
+      <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap" style="font-weight:800;font-size:16px;color:var(--b700);">in</div>
+        <div><div class="contact-lbl">LinkedIn</div><div class="contact-val">samved-paramkusham</div></div>
       </a>
-      <a href="https://github.com/Samved-git" target="_blank" class="contact-item">
-        <div class="contact-icon">&lt;/&gt;</div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">Samved-git</div>
-        </div>
+      <a href="https://github.com/Samved-git" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap" style="font-size:13px;font-weight:700;color:var(--n700);">&lt;/&gt;</div>
+        <div><div class="contact-lbl">GitHub</div><div class="contact-val">Samved-git</div></div>
       </a>
-      <div class="contact-item" style="cursor:default;">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Hyderabad, Telangana, India</div>
-        </div>
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-icon-wrap">📍</div>
+        <div><div class="contact-lbl">Location</div><div class="contact-val">Hyderabad, Telangana, India</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-  <p>Samved Paramkusham · Healthcare IT Professional · Hyderabad, India</p>
+  <div class="footer-left">
+    <div class="footer-name">Samved Paramkusham</div>
+    <div class="footer-sub">Healthcare IT Professional · Hyderabad, India · © 2025</div>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="footer-link">LinkedIn ↗</a>
+    <a href="https://github.com/Samved-git" target="_blank" class="footer-link">GitHub ↗</a>
+    <a href="mailto:samvedparamkusham@gmail.com" class="footer-link">Email ↗</a>
+    <a href="Samved_Paramkusham_Resume.docx" download class="footer-link">⬇ Resume</a>
+  </div>
 </footer>
 
+<script>
+/* Navbar scroll shadow */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* Active nav link on scroll */
+const sections = document.querySelectorAll('section[id], footer');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+/* Experience tab switching */
+document.getElementById('expTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.exp-tab');
+  if (!tab) return;
+  document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+});
+</script>
 </body>
 </html>
