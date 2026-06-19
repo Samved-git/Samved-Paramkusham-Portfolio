@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samved Paramkusham — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-200: #85B7EB;
+    --blue-400: #378ADD;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --white: #ffffff;
+    --off-white: #F7F9FC;
+    --text-primary: #0D1117;
+    --text-secondary: #3D4A5C;
+    --text-muted: #6B7A8D;
+    --border: rgba(24, 95, 165, 0.15);
+    --border-strong: rgba(24, 95, 165, 0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--blue-800);
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-600); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--blue-900);
+    display: flex; align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(55,138,221,0.08) 100%);
+    pointer-events: none;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image:
+      linear-gradient(to right, #378ADD 1px, transparent 1px),
+      linear-gradient(to bottom, #378ADD 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-400);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 28px; height: 1px;
+    background: var(--blue-400);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--blue-200);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .hero-title strong {
+    color: #ffffff;
+    font-weight: 500;
+  }
+  .hero-links {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-400);
+    color: #ffffff;
+    font-size: 13px; font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #185FA5; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent;
+    color: var(--blue-200);
+    font-size: 13px; font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 4px;
+    border: 0.5px solid rgba(133,183,235,0.4);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--blue-200); color: #fff; }
+
+  /* HERO stats */
+  .hero-stats {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .stat-block {
+    padding: 1.5rem;
+    border: 0.5px solid rgba(133,183,235,0.2);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    position: relative;
+  }
+  .stat-block::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: var(--blue-400);
+    border-radius: 6px 0 0 6px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--blue-200);
+    font-weight: 400;
+  }
+
+  /* SECTION SCAFFOLDING */
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { margin-bottom: 3rem; }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--blue-400);
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.15;
+  }
+
+  /* IMPACT NUMBERS */
+  .impact-section { background: var(--off-white); }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .metric-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--blue-400);
+  }
+  .metric-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--blue-800);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metric-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* EXPERIENCE */
+  .exp-section { background: var(--white); }
+  .experience-block {
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .exp-header {
+    background: var(--blue-900);
+    padding: 1.75rem 2rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-size: 14px;
+    color: var(--blue-200);
+    font-weight: 400;
+  }
+  .exp-meta {
+    text-align: right;
+  }
+  .exp-duration {
+    display: inline-block;
+    background: var(--blue-400);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+  .exp-location {
+    font-size: 13px;
+    color: var(--blue-200);
+    display: block;
+  }
+  .exp-achievements {
+    padding: 1.75rem 2rem;
+    list-style: none;
+    display: grid; gap: 1rem;
+  }
+  .exp-achievements li {
+    display: flex; gap: 0.9rem;
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .exp-achievements li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blue-400);
+    margin-top: 9px;
+  }
+  .highlight {
+    color: var(--blue-800);
+    font-weight: 500;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--off-white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .skill-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--blue-800);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-card-title::after {
+    content: ''; flex: 1; height: 0.5px;
+    background: var(--border-strong);
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .skill-tag {
+    font-size: 12px;
+    padding: 4px 11px;
+    border-radius: 3px;
+    background: var(--blue-50);
+    color: var(--blue-800);
+    font-weight: 500;
+    border: 0.5px solid var(--blue-100);
+  }
+
+  /* AWARDS */
+  .awards-section { background: var(--white); }
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .award-card {
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .award-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-400), var(--blue-200));
+  }
+  .award-year {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-400);
+    margin-bottom: 8px;
+  }
+  .award-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .award-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .award-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  /* EDUCATION */
+  .edu-section { background: var(--blue-900); }
+  .edu-section .section-eyebrow { color: var(--blue-400); }
+  .edu-section .section-eyebrow::before { background: var(--blue-400); }
+  .edu-section .section-heading { color: #ffffff; }
+  .edu-card {
+    display: flex; gap: 2rem; align-items: flex-start;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(133,183,235,0.2);
+    border-radius: 8px;
+    padding: 2rem 2.25rem;
+    flex-wrap: wrap;
+  }
+  .edu-degree-icon {
+    width: 56px; height: 56px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--blue-800);
+    border: 0.5px solid rgba(133,183,235,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .edu-school {
+    font-size: 14px;
+    color: var(--blue-200);
+    margin-bottom: 4px;
+  }
+  .edu-meta {
+    font-size: 13px;
+    color: rgba(133,183,235,0.6);
+  }
+
+  /* CONTACT */
+  .contact-section { background: var(--off-white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .contact-item {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .contact-item:hover {
+    border-color: var(--blue-400);
+    box-shadow: 0 0 0 3px rgba(55,138,221,0.08);
+  }
+  .contact-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--blue-50);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue-800);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .contact-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .contact-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue-900);
+    padding: 2rem 2.5rem;
+    text-align: center;
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(133,183,235,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--blue-400);
+    margin: 1.25rem 0;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .exp-header { flex-direction: column; }
+    .exp-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S. Paramkusham</div>
+  <ul class="nav-links">
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Healthcare IT Professional</div>
+      <h1 class="hero-name">Samved<br>Paramkusham</h1>
+      <p class="hero-title">
+        <strong>Facets Specialist · SQL / PL-SQL Developer · Healthcare IT Lead</strong><br>
+        6+ years architecting high-performance payer systems and leading cross-functional teams at Cognizant Technology Solutions.
+      </p>
+      <div class="hero-links">
+        <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="btn-primary">LinkedIn Profile</a>
+        <a href="https://github.com/Samved-git" target="_blank" class="btn-outline">GitHub</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-block">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years in Healthcare IT, Cognizant</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">500K+</div>
+        <div class="stat-label">Health plan members supported</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4×</div>
+        <div class="stat-label">Employee excellence awards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT METRICS -->
+<section class="impact-section" id="impact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Measurable impact</div>
+      <h2 class="section-heading">Results that define a career</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-number">8×</div>
+        <div class="metric-desc">SQL execution time improvement on 100K+ daily transaction codebase</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">85%</div>
+        <div class="metric-desc">Reduction in manual effort for 50,000+ member subscriber migration</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">45%</div>
+        <div class="metric-desc">Query performance gain via enterprise data archival solution</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">$10K</div>
+        <div class="metric-desc">Annual cost savings from SSIS-automated EDI transaction processing</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">5 min</div>
+        <div class="metric-desc">Turnaround time on workflows that previously required a full week via vendor</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">60%</div>
+        <div class="metric-desc">Year-over-year enrolment growth after SQL-driven root-cause resolution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Professional experience</div>
+      <h2 class="section-heading">Where the work was done</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="experience-block">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Product Specialist — Healthcare Payer Systems</div>
+          <div class="exp-company">Cognizant Technology Solutions</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-duration">March 2020 – Present</span>
+          <span class="exp-location">Hyderabad, Telangana, India</span>
+        </div>
+      </div>
+      <ul class="exp-achievements">
+        <li>Developed and maintained SQL/PL-SQL solutions for <span class="highlight">TriZetto Facets and Cactus</span> supporting claims adjudication, enrolment processing, benefit management, and provider network administration for US healthcare clients with <span class="highlight">500K+ members</span>; ensured 100% HIPAA and CMS regulatory compliance.</li>
+        <li>Engineered automated SSIS packages for EDI transactions (837, 834 files), eliminating <span class="highlight">40+ hours of manual processing monthly</span> and generating $10,000 in annual cost savings with full SLA compliance.</li>
+        <li>Resolved a 40% enrolment decline by leveraging SQL analytics to identify provider data field issues and implementing exclusion logic — resulting in <span class="highlight">60% year-over-year enrolment growth</span>.</li>
+        <li>Automated subscriber migration for <span class="highlight">50,000+ members</span> from legacy to new health plans, reducing manual effort by 85% and improving data accuracy to 99.8%.</li>
+        <li>Built an enterprise data archival solution to migrate inactive records, improving query performance by <span class="highlight">45%</span> and significantly reducing storage costs.</li>
+        <li>Optimized legacy Facets codebase handling <span class="highlight">100,000+ daily transactions</span> through SQL tuning, indexing, and query refactoring — achieving 8× execution time improvement with zero defects across consecutive releases.</li>
+        <li>Led 5+ healthcare data integration projects managing cross-functional teams of 5–8 members, delivering on-time within budget while maintaining <span class="highlight">92% team utilisation</span>.</li>
+        <li>Served as BCM Primary Coordinator for disaster recovery, ensuring <span class="highlight">99.9% system availability</span> for critical healthcare systems.</li>
+        <li>Designed and deployed an <span class="highlight">AWS-based automation model</span> to replicate file generation workflows previously outsourced — reducing turnaround from 1 week to under 5 minutes and eliminating vendor dependency entirely.</li>
+        <li>Led cross-functional team to a <span class="highlight">zero-defect production go-live in September 2025</span>, delivering measurable performance optimisation and maintaining post-implementation operational excellence.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Technical expertise</div>
+      <h2 class="section-heading">Skills &amp; technologies</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">PL/SQL</span>
+          <span class="skill-tag">T-SQL</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MS SQL Server</span>
+          <span class="skill-tag">Oracle DB</span>
+          <span class="skill-tag">Query Optimisation</span>
+          <span class="skill-tag">Index Design</span>
+          <span class="skill-tag">Data Modelling</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Healthcare Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TriZetto Facets</span>
+          <span class="skill-tag">Cactus</span>
+          <span class="skill-tag">EDI X12</span>
+          <span class="skill-tag">837 / 834 / 835</span>
+          <span class="skill-tag">Claims Processing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">ETL &amp; Integration</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SSIS</span>
+          <span class="skill-tag">Data Migration</span>
+          <span class="skill-tag">ETL Development</span>
+          <span class="skill-tag">File Processing Automation</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Cloud &amp; DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS Automation</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">TFS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Methodologies</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Waterfall</span>
+          <span class="skill-tag">HIPAA Compliance</span>
+          <span class="skill-tag">Business Continuity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards-section" id="awards">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Recognition</div>
+      <h2 class="section-heading">Awards &amp; honours</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-year">2021</div>
+        <div class="award-name">Coral Award — Best Employee Q1</div>
+        <div class="award-desc">Recognized for exemplary project delivery and successful implementation of critical healthcare system enhancements with zero production issues.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-year">2022</div>
+        <div class="award-name">Amber Award — Outstanding Contribution</div>
+        <div class="award-desc">Honoured for initiatives beyond project scope, including timesheet consolidation automation and Azure DevOps documentation standardization.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-year">2023</div>
+        <div class="award-name">Coral Award — Best Employee H1</div>
+        <div class="award-desc">Awarded for achieving zero-defect production deployments across all existing healthcare codebase releases, demonstrating exceptional QA rigor.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <div class="award-year">2024</div>
+        <div class="award-name">Coral Award — Best Employee H1</div>
+        <div class="award-desc">Recognized for exceptional project leadership, technical mentorship, and driving team success in delivering complex healthcare integration solutions ahead of schedule.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Education</div>
+      <h2 class="section-heading">Academic foundation</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree-icon">🎓</div>
+      <div>
+        <div class="edu-degree">Bachelor of Technology — Mechanical Engineering</div>
+        <div class="edu-school">Kakatiya Institute of Technology and Science, Warangal</div>
+        <div class="edu-meta">2015 – 2019 &nbsp;·&nbsp; CGPA: 7.39 / 10.0</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Get in touch</div>
+      <h2 class="section-heading">Open to opportunities in Hyderabad</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:samvedparamkusham@gmail.com" class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">samvedparamkusham@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+919989301928" class="contact-item">
+        <div class="contact-icon">☎</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+91 99893 01928</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/samved-paramkusham/" target="_blank" class="contact-item">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">samved-paramkusham</div>
+        </div>
+      </a>
+      <a href="https://github.com/Samved-git" target="_blank" class="contact-item">
+        <div class="contact-icon">&lt;/&gt;</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">Samved-git</div>
+        </div>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Hyderabad, Telangana, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Samved Paramkusham · Healthcare IT Professional · Hyderabad, India</p>
+</footer>
+
+</body>
+</html>
