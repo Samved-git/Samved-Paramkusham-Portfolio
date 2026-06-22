@@ -667,6 +667,21 @@ footer {
   .competencies-grid { grid-template-columns: 1fr; }
   .hero-quick-facts { flex-direction: column; gap: 0.6rem; }
 }
+
+/* ===== FIXES ADDED ===== */
+section{scroll-margin-top:90px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:15px;align-items:center;}
+.hero-quick-facts{display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+.contact-card{min-height:95px;}
+.exp-tab:hover{background:#f5f9ff;}
+footer{justify-content:space-between;align-items:flex-start;}
+@media (max-width:768px){
+.hero-name{font-size:42px;}
+.hero-actions a{width:100%;justify-content:center;}
+.contact-val{word-break:break-word;}
+.hero-panel{width:100%;}
+}
+
 </style>
 </head>
 <body>
@@ -1184,28 +1199,33 @@ footer {
   </div>
 </footer>
 
+
 <script>
-/* Navbar scroll shadow */
 window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  document.getElementById('navbar')
+    .classList.toggle('scrolled', window.scrollY > 10);
 });
 
-/* Active nav link on scroll */
-const sections = document.querySelectorAll('section[id], footer');
 const navLinks = document.querySelectorAll('.nav-links a');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
     }
   });
-}, { threshold: 0.4 });
-document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+});
 
-/* Experience tab switching */
-document.getElementById('expTabs').addEventListener('click', e => {
+const expTabs = document.getElementById('expTabs');
+if(expTabs){
+expTabs.addEventListener('click', (e) => {
   const tab = e.target.closest('.exp-tab');
   if (!tab) return;
   document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
@@ -1213,6 +1233,8 @@ document.getElementById('expTabs').addEventListener('click', e => {
   tab.classList.add('active');
   document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
 });
+}
 </script>
+
 </body>
 </html>
